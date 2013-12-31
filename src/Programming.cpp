@@ -31,10 +31,16 @@
 #include <programming/ds/linkedlist.h>
 #include <programming/utils/treeutils.h>
 #include <programming/utils/llutils.h>
+
+#define null NULL
+#define MM 1
+#define CMS 1000 * MM
+#define METER 100 * CMS
 using namespace std;
 
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-	tNodeAuxVal *ptr;
+	printf("%d",2 * METER);
+	//tNodeAuxVal *ptr;
 	return 0;
 }
