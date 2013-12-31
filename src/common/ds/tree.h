@@ -52,6 +52,13 @@ struct tPNode{
 	tPNode *parent;
 };
 
+struct tNodeFlag{
+	int value;
+	bool flag;
+	tNodeFlag *left;
+	tNodeFlag *right;
+};
+
 struct tNodeAuxVal{
 	int value;
 	unsigned int auxValue;

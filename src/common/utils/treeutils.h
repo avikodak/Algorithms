@@ -96,7 +96,18 @@ void createTree(tNode **ptr,vector<int> userInput){
 	}
 }
 
-void createTreeRecursive(tNode **ptr,queue<tNode *> &auxSpace,vector<int> userInput,unsigned int currentIndex){
+tNode *createTreeRecursive(vector<int> userInput,unsigned int currentIndex){
+	if(userInput.size() == 0 || currentIndex >= userInput.size()){
+		return NULL;
+	}
+	tNode *ptr;
+	ptr = createNewNode(userInput[currentIndex]);
+	ptr->left = createTreeRecursive(userInput,2*currentIndex+1);
+	ptr->right = createTreeRecursive(userInput,2*currentIndex+2);
+	return ptr;
+}
+
+void createTreeRecursiveAuxspace(tNode **ptr,queue<tNode *> &auxSpace,vector<int> userInput,unsigned int currentIndex){
 	if(*ptr == NULL){
 		(*ptr) = createNewNode(userInput[currentIndex]);
 		auxSpace.push(*ptr);
