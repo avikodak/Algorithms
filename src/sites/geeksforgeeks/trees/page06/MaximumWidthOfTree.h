@@ -135,31 +135,6 @@ unsigned int maximumWidthTreePreOrderIterative(tNode *ptr){
 	}
 	stack<tNode *> auxSpace;
 	tNode *currentNode;
-	vector<unsigned int> levelCounter;
-	hash_map<uint32_t,unsigned int> nodeLevelMap;
-	unsigned int currentNodeLevel;
-	auxSpace.push(ptr);
-	nodeLevelMap.insert(pair<uint32_t,unsigned int>((uint32_t)ptr,0));
-	while(!auxSpace.empty()){
-		currentNode = auxSpace.top();
-		currentNodeLevel = nodeLevelMap.find((uint32_t)currentNode);
-		levelCounter[currentNodeLevel] += 1;
-		if(currentNode->right != NULL){
-			auxSpace.push(currentNode->right);
-			nodeLevelMap.insert(pair<uint32_t,unsigned int>((uint32_t)currentNode->right,currentNodeLevel+1));
-		}
-		if(currentNode->left != NULL){
-			auxSpace.push(currentNode->left);
-			nodeLevelMap.insert(pair<uint32_t,unsigned int>((uint32_t)currentNode->left,currentNodeLevel+1));
-		}
-	}
-	unsigned int maxWidth = 0;
-	for(unsigned int counter = 0;counter < levelCounter.size();counter++){
-		if(maxWidth < levelCounter[counter]){
-			maxWidth = levelCounter[counter];
-		}
-	}
-	return maxWidth;
 }
 #endif /* MAXIMUMWIDTHOFTREE_H_ */
 
