@@ -43,10 +43,28 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef CIRCULARLLADAPTORPATTERN_H_
 #define CIRCULARLLADAPTORPATTERN_H_
 
+void enqueueDynamicQueue(llNode **ptr,int userInput){
 
+}
+
+void dequeueDynamicQueue(llNode **ptr){
+
+}
+
+unsigned int sizeOfDynamicQueue(llNode *ptr){
+
+}
+
+int frontDynamicQueue(llNode *ptr){
+
+}
+
+bool isDynamicQueueEmpty(llNode *ptr){
+
+}
 #endif /* CIRCULARLLADAPTORPATTERN_H_ */
+
+/************************************************* End code *******************************************************/

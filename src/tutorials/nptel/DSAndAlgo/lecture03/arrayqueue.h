@@ -40,13 +40,51 @@ using namespace __gnu_cxx;
 
 /************************************************ User defined constants *******************************************/
 #define null NULL
-
+#define SIZE_OF_QUEUE 30
 /************************************************* Main code  ******************************************************/
-
-/************************************************* End code *******************************************************/
 
 #ifndef ARRAYQUEUE_H_
 #define ARRAYQUEUE_H_
 
+int queue[SIZE_OF_QUEUE];
+unsigned int front = -1;
+unsigned int rear = 0;
 
+bool isQueueEmpty(){
+
+}
+
+bool isQueueFull(){
+
+}
+
+void enqueue(int userInput){
+	if(isQueueFull()){
+		printf("Queue is full\n");
+		return;
+	}
+	queue[rear] = userInput;
+	rear = (rear+1)%SIZE_OF_QUEUE;
+}
+
+void deque(){
+	if(isQueueEmpty()){
+		printf("Queue is empty\n");
+		return;
+	}
+	queue[front++] = 0;
+}
+
+unsigned int sizeOfQueue(){
+	return SIZE_OF_QUEUE - front + rear;
+}
+
+int front(){
+	if(isQueueEmpty()){
+		printf("Queue is empty\n");
+		return INT_MIN;
+	}
+	return queue[front];
+}
 #endif /* ARRAYQUEUE_H_ */
+/************************************************* End code *******************************************************/

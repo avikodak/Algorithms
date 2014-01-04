@@ -40,13 +40,25 @@ using namespace __gnu_cxx;
 
 /************************************************ User defined constants *******************************************/
 #define null NULL
+#define TIGHT_STRATEGY_SIZE_INCREMENTS 10
 
 /************************************************* Main code  ******************************************************/
-
-/************************************************* End code *******************************************************/
 
 #ifndef TIGHTSTRATEGY_H_
 #define TIGHTSTRATEGY_H_
 
+int *growArrayByTightStrategy(int userInput[],unsigned int sizeOfArray,int key){
+	int *biggerArray;
+	biggerArray = (int *)calloc(sizeOfArray + TIGHT_STRATEGY_SIZE_INCREMENTS,sizeof(int));
+	if(userInput != NULL){
+		for(unsigned int counter = 0;counter < sizeOfArray;counter++){
+			biggerArray[counter] = userInput[counter];
+		}
+	}
+	biggerArray[sizeOfArray] = key;
+	return biggerArray;
+}
 
 #endif /* TIGHTSTRATEGY_H_ */
+
+/************************************************* End code *******************************************************/

@@ -46,6 +46,12 @@ using namespace __gnu_cxx;
 #ifndef HEIGHTOFNODE_H_
 #define HEIGHTOFNODE_H_
 
+unsigned int heightOfNode(tNode *ptr){
+	if(ptr == NULL){
+		return 0;
+	}
+	return 1 + max(heightOfNode(ptr->left),heightOfNode(ptr->right));
+}
 
 #endif /* HEIGHTOFNODE_H_ */
 

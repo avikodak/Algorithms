@@ -5,7 +5,7 @@
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
-*****************************************************************************************************************/
+ *****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -43,10 +43,103 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef DEQUE_H_
 #define DEQUE_H_
 
+dllNode *createNewDllNode(int userInput){
+	dllNode *newNode = (dllNode *)malloc(sizeof(dllNode));
+	newNode->value = userInput;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+	return newNode;
+}
+
+void enqueueFrontDynamicDeque(dllNode **ptr,int userInput){
+	dllNode *newNode = createNewDllNode(userInput);
+	if(*ptr == NULL){
+		(*ptr) = newNode;
+	}else{
+		newNode->next = (*ptr);
+		(*ptr)->prev = newNode;
+		(*ptr) = newNode;
+	}
+}
+
+void enqueueBackDynamicDeque(dllNode **ptr,int userInput){
+	dllNode *newNode = createNewDllNode(userInput);
+	if(*ptr == NULL){
+		(*ptr) = newNode;
+	}else{
+		dllNode *crawler = (*ptr);
+		while(crawler->next != NULL){
+			crawler = crawler->next;
+		}
+		crawler->next = newNode;
+		newNode->prev = crawler;
+	}
+}
+
+void dequeFrontDynamicDeque(dllNode **ptr){
+	if(*ptr == NULL){
+		printf("Deque is empty");
+		return;
+	}
+	dllNode *nodeToBeDeleted = (*ptr);
+	(*ptr) = (*ptr)->next;
+	(*ptr)->prev = NULL;
+	free(nodeToBeDeleted);
+}
+
+void dequeBackDynamicDeque(dllNode **ptr){
+	if(*ptr == NULL){
+		printf("Deque is empty");
+		return;
+	}
+	dllNode *crawler = (*ptr);
+	while(crawler->next != NULL){
+		crawler = crawler->next;
+	}
+	crawler->prev->next = NULL;
+	free(crawler);
+}
+
+int getFrontDynamicQueue(dllNode *ptr){
+	if(ptr == NULL){
+		printf("Queue is empty");
+		return;
+	}
+	return ptr->value;
+}
+
+int getBackDynamicQueue(dllNode *ptr){
+	if(ptr == NULL){
+		printf("Queue is empty");
+		return;
+	}
+	dllNode *crawler= ptr;
+	while(crawler->next != NULL){
+		crawler = crawler->next;
+	}
+	return crawler->value;
+}
+
+unsigned int sizeDynamicDeque(dllNode *ptr){
+	if(ptr == NULL){
+		return 0;
+	}
+	unsigned int size = 0;
+	dllNode *crawler = ptr;
+	while(crawler != NULL){
+		crawler = crawler->next;
+		size++;
+	}
+	return size;
+}
+
+bool isEmptyDeque(dllNode *ptr){
+	return ptr == NULL?true:false;
+}
 
 #endif /* DEQUE_H_ */
+
+/************************************************* End code *******************************************************/

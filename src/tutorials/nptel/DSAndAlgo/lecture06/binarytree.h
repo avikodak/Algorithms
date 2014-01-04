@@ -43,10 +43,20 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BINARYTREE_H_
 #define BINARYTREE_H_
 
+tNode *createBinaryTree(vector<int> userInput,unsigned int counter){
+	if(counter >= userInput.size()){
+		return NULL;
+	}
+	tNode *newNode = (tNode *)malloc(sizeof(tNode));
+	newNode->value = userInput[counter];
+	newNode->left = createBinaryTree(userInput,2*counter+1);
+	newNode->right = createBinaryTree(userInput,2*counter+2);
+	return newNode;
+}
 
 #endif /* BINARYTREE_H_ */
+
+/************************************************* End code *******************************************************/

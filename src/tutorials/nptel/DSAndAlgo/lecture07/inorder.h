@@ -42,11 +42,62 @@ using namespace __gnu_cxx;
 #define null NULL
 
 /************************************************* Main code  ******************************************************/
-
-/************************************************* End code *******************************************************/
-
 #ifndef INORDER_H_
 #define INORDER_H_
 
+void inOrderTraversal(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	inOrderTraversal(ptr->left);
+	printf("%d\n",ptr->value);
+	inOrderTraversal(ptr->right);
+}
+
+void inOrderTraversalIterative(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	stack<tNode *> auxSpace;
+	tNode *currentNode = ptr;
+	while(!auxSpace.empty() && currentNode != NULL){
+		if(currentNode != NULL){
+			auxSpace.push(currentNode);
+			currentNode = currentNode->left;
+		}else{
+			currentNode = auxSpace.top();
+			auxSpace.pop();
+			printf("%d\t",currentNode->value);
+			currentNode = currentNode->right;
+		}
+	}
+}
+
+void inOrderTraversalMorris(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	tNode *currentNode = ptr,*temp;
+	while(currentNode != NULL){
+		if(currentNode->left != NULL){
+			temp = currentNode->left;
+			while(temp->right != NULL && temp->right != currentNode){
+				temp = temp->right;
+			}
+			if(temp->right == NULL){
+				temp->right = currentNode;
+				currentNode = currentNode->left;
+			}else{
+				printf("%d\t",currentNode->value);
+				temp->right = NULL;
+				currentNode = currentNode->right;
+			}
+		}else{
+			printf("%d\t",currentNode->value);
+			currentNode = currentNode->right;
+		}
+	}
+}
 
 #endif /* INORDER_H_ */
+/************************************************* End code *******************************************************/

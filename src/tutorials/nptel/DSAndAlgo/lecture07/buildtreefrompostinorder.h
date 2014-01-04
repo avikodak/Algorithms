@@ -43,10 +43,20 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BUILDTREEFROMPOSTINORDER_H_
 #define BUILDTREEFROMPOSTINORDER_H_
 
+tNode *buildTreeFromPostInorder(vector<int> postOrder,vector<int> inOrder,hash_map<int,unsigned int> inOrderValueIndexMap,unsigned int postOrderStartIndex,unsigned int postOrderEndIndex,unsigned int inOrderStartIndex,unsigned int inOrderEndIndex){
+	if(postOrder.size() == 0 || inOrder.size() == 0 || postOrderStartIndex > postOrderEndIndex || inOrderStartIndex > inOrderEndIndex){
+		return NULL;
+	}
+	tNode *newNode = (tNode *)malloc(sizeof(tNode));
+	newNode->value = postOrder[postOrderEndIndex];
+	unsigned int inorderIndex;
+	newNode->left = buildTreeFromPostInorder(postOrder,inOrder,inOrderValueIndexMap,postOrderStartIndex,postOrderStartIndex + (inOrderStartIndex - inorderIndex),inOrderStartIndex,inorderIndex - 1);
+	newNode->right = buildTreeFromPostInorder(postOrder,inOrder,inOrderValueIndexMap,postOrderStartIndex + (inOrderStartIndex - inorderIndex) + 1,postOrderEndIndex,inorderIndex + 1,inOrderEndIndex);
+	return newNode;
+}
 
 #endif /* BUILDTREEFROMPOSTINORDER_H_ */
+/************************************************* End code *******************************************************/

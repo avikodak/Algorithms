@@ -43,10 +43,44 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BINARYSEARCH_H_
 #define BINARYSEARCH_H_
 
+bool binarySearch(vector<int> userInput,int key,unsigned int startIndex,unsigned int endIndex){
+	if(startIndex > endIndex || userInput.size() == 0){
+		return false;
+	}
+	unsigned int middleIndex = (startIndex + endIndex)/2;
+	if(userInput[middleIndex] == key){
+		return true;
+	}
+	if(userInput[middleIndex] > key){
+		return binarySearch(userInput,key,startIndex,middleIndex-1);
+	}else{
+		return binarySearch(userInput,key,middleIndex+1,endIndex);
+	}
+}
+
+bool binarySearchIterative(vector<int> userInput,int key){
+	if(userInput.size() == 0){
+		return false;
+	}
+	unsigned int startIndex = 0,endIndex = userInput.size()-1;
+	unsigned int middleIndex;
+	while(startIndex < endIndex){
+		middleIndex = (startIndex + endIndex)/2;
+		if(userInput[middleIndex] == key){
+			return true;
+		}
+		if(userInput[middleIndex] > key){
+			endIndex = middleIndex - 1;
+		}else{
+			startIndex = middleIndex + 1;
+		}
+	}
+
+}
 
 #endif /* BINARYSEARCH_H_ */
+
+/************************************************* End code *******************************************************/

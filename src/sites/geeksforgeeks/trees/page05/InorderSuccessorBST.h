@@ -58,11 +58,64 @@ tNode *inOrderSuccessorBST(tNode *ptr,tNode *ptrToKey){
 		}
 	}else{
 		temp = root;
+		tNode *successor = NULL;
+		while(temp->left != ptrToKey || temp->right != ptrToKey){
+			if(temp->value > ptrToKey->value){
+				successor = temp;
+				temp = temp->left;
+			}else{
+				temp = temp->right;
+			}
+		}
+		temp = successor;
 	}
 	return temp;
 }
 
+tNode *inOrderSuccessorBSTIterative(tNode *ptr,int value){
+	if(ptr == NULL){
+		return NULL;
+	}
+	tNode *crawler,*probableSuccessor = NULL;
+	while(crawler != NULL && crawler->value != value){
+		if(crawler->value > value){
+			probableSuccessor = crawler;
+			crawler = crawler->left;
+		}else{
+			crawler = crawler->right;
+		}
+	}
+	if(crawler->right != NULL){
+		crawler = crawler->right;
+		while(crawler->left != NULL){
+			crawler = crawler->left;
+		}
+		return crawler;
+	}
+	return probableSuccessor;
+}
 
+tNode *inOrderSuccessorBST(tNode *ptr,tNode **probableSuccessor,int value){
+	if(ptr == NULL){
+		return NULL;
+	}
+	if(ptr->value == value){
+		if(ptr->right == NULL){
+			return (*probableSuccessor);
+		}
+		ptr = ptr->right;
+		while(ptr->left != NULL){
+			ptr = ptr->left;
+		}
+		return ptr;
+	}
+	if(ptr->value > value){
+		probableSuccessor = ptr;
+		return inOrderSuccessorBST(ptr->left,probableSuccessor,value);
+	}else{
+		return inOrderSuccessorBST(ptr->right,probableSuccessor,value);
+	}
+}
 
 #endif /* INORDERSUCCESSORBST_H_ */
 

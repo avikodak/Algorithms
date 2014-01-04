@@ -43,10 +43,31 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef LINEARSEARCH_H_
 #define LINEARSEARCH_H_
 
+bool linearSearch(vector<int> userInput,int key,unsigned int currentIndex = 0){
+	if(currentIndex >= userInput.size()){
+		return false;
+	}
+	if(userInput[currentIndex] == key){
+		return true;
+	}
+	return linearSearch(userInput,key,currentIndex+1);
+}
+
+bool linearSearch(vector<int> userInput,int key){
+	if(userInput.size() == 0){
+		return false;
+	}
+	for(unsigned int counter = 0;counter < userInput.size();counter++){
+		if(userInput[counter] == key){
+			return true;
+		}
+	}
+	return false;
+}
 
 #endif /* LINEARSEARCH_H_ */
+
+/************************************************* End code *******************************************************/

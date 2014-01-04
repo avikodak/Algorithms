@@ -46,7 +46,37 @@ using namespace __gnu_cxx;
 #ifndef HEIGHTBALANCED_H_
 #define HEIGHTBALANCED_H_
 
+unsigned int heightOfTree(tNode *ptr){
+	if(ptr == NULL){
+		return 0;
+	}
+	return 1 + max(ptr->left,ptr->right);
+}
 
+bool isTreeHeightBalanced(tNode *ptr){
+	if(ptr == NULL){
+		return true;
+	}
+	if(abs(heightOfTree(ptr->left)-heightOfTree(ptr->right)) != 1){
+		return false;
+	}
+	return isTreeHeightBalanced(ptr->left) && isTreeHeightBalanced(ptr->right);
+}
+
+unsigned int isTreeHeightBalancedBottomTop(tNode *ptr){
+	if(ptr == NULL){
+		return 0;
+	}
+	unsigned int leftHeight = isTreeHeightBalancedBottomTop(ptr->left);
+	if(leftHeight == INT_MAX){
+		return INT_MAX;
+	}
+	unsigned int rightHeight = isTreeHeightBalancedBottomTop(ptr->right);
+	if(rightHeight == INT_MAX){
+		return INT_MAX;
+	}
+	return abs(leftHeight - rightHeight) == 1?1+max(leftHeight,rightHeight):INT_MAX;
+}
 #endif /* HEIGHTBALANCED_H_ */
 
 /************************************************* End code *******************************************************/

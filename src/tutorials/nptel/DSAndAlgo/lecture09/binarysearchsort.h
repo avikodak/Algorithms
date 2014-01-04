@@ -43,10 +43,30 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BINARYSEARCHSORT_H_
 #define BINARYSEARCHSORT_H_
 
+void bstSort(vector<int> userInput){
+	if(userInput.size() == 0 || userInput.size() == 1){
+		return;
+	}
+	tNode *bstTree = NULL;
+	createBST(&bstTree,userInput);
+	stack<tNode *> auxSpace;
+	tNode *currentNode = bstTree;
+	unsigned int counter = -1;
+	while(!auxSpace.empty() && currentNode != NULL){
+		if(currentNode != NULL){
+			auxSpace.push(currentNode);
+			currentNode = currentNode->left;
+		}else{
+			currentNode = auxSpace.top();
+			userInput[++counter] = currentNode->value;
+			auxSpace.pop();
+			currentNode = currentNode->right;
+		}
+	}
+}
 
 #endif /* BINARYSEARCHSORT_H_ */
+/************************************************* End code *******************************************************/

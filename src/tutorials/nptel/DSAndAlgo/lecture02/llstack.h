@@ -43,10 +43,38 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef LLSTACK_H_
 #define LLSTACK_H_
 
+void pushdynamicStack(llNode **ptr,int userInput){
+	llNode *newNode = (llNode *)malloc(sizeof(llNode));
+	newNode->value = userInput;
+	newNode->next = (*ptr);
+	(*ptr) = newNode;
+}
 
+void popdynamicStack(llNode **ptr){
+	if((*ptr) == NULL){
+		printf("stack is empty\n");
+		return;
+	}else{
+		llNode *nodeToBeDeleted = (*ptr);
+		(*ptr) = (*ptr)->next;
+		free(nodeToBeDeleted);
+	}
+}
+
+int topdynamicStack(llNode *ptr){
+	return ptr->value;
+}
+
+unsigned int sizedynamicStack(llNode *ptr){
+	return ptr == NULL?0:1+sizedynamicStack(ptr->next);
+}
+
+bool emptydynamicStack(llNode *ptr){
+	return ptr == NULL?true:false;
+}
 #endif /* LLSTACK_H_ */
+
+/************************************************* End code *******************************************************/

@@ -43,10 +43,33 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef ARRAYSTACK_H_
 #define ARRAYSTACK_H_
 
+bool isStackEmpty(){
+
+}
+
+bool isStackFull(){
+
+}
+
+unsigned int sizeOfQueue(){
+
+}
+
+void push(int userInput){
+
+}
+
+void pop(int userInput){
+
+}
+
+int top(){
+
+}
 
 #endif /* ARRAYSTACK_H_ */
+
+/************************************************* End code *******************************************************/

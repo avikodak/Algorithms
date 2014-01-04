@@ -47,11 +47,39 @@ using namespace __gnu_cxx;
 #define INSERTIONSORT_H_
 
 void insertionSortIterative(vector<int> &userInput){
-
+	if(userInput.size() == 0 || userInput.size() == 1){
+		return;
+	}
+	unsigned int outerCounter,innerCounter;
+	int temp;
+	for(outerCounter = 2;outerCounter < userInput.size();outerCounter++){
+		for(innerCounter = outerCounter-1;innerCounter >= 0;innerCounter--){
+			if(userInput[innerCounter] > userInput[innerCounter+1]){
+				temp = userInput[innerCounter];
+				userInput[innerCounter] = userInput[innerCounter+1];
+				userInput[innerCounter+1] = temp;
+			}else{
+				break;
+			}
+		}
+	}
 }
 
 void insertionSort(vector<int> &userInput,unsigned int currentIndex){
-
+	if(userInput.size() == 0 || userInput.size() == 1 || currentIndex >= userInput.size()){
+		return;
+	}
+	int tempForSwap;
+	for(unsigned int counter = currentIndex-1;counter >= 0;counter--){
+		if(userInput[counter] > userInput[counter+1]){
+			tempForSwap = userInput[counter];
+			userInput[counter] = userInput[counter+1];
+			userInput[counter+1] = tempForSwap;
+		}else{
+			break;
+		}
+	}
+	insertionSort(userInput,currentIndex+1);
 }
 
 #endif /* INSERTIONSORT_H_ */

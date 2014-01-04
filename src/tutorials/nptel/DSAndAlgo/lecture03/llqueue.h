@@ -43,10 +43,50 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef LLQUEUE_H_
 #define LLQUEUE_H_
 
+void enqueuedynamicQueue(llNode **ptr,int userInput){
+	llNode *newNode = (llNode *)malloc(sizeof(llNode));
+	newNode->value = userInput;
+	newNode->next = NULL;
+	if(*ptr == NULL){
+		(*ptr) = newNode;
+	}else{
+		llNode *crawler = (*ptr);
+		while(crawler->next != NULL){
+			crawler = crawler->next;
+		}
+		crawler->next = newNode;
+	}
+}
+
+void dequeuedynamicQueue(llNode **ptr){
+	if(*ptr == NULL){
+		printf("Queue is empty\n");
+		return;
+	}
+	llNode *nodeToBeDeleted = (*ptr);
+	(*ptr) = (*ptr)->next;
+	free(nodeToBeDeleted);
+}
+
+int frontdynamicQueue(llNode *ptr){
+	if(ptr == NULL){
+		printf("Queue is empty\n");
+		return INT_MIN;
+	}
+	return ptr->value;
+}
+
+unsigned int sizeOfdynamicQueue(llNode *ptr){
+	return ptr == NULL?0:1+sizeOfdynamicQueue(ptr->next);
+}
+
+bool isQueueempty(llNode *ptr){
+	return ptr == NULL?true:false;
+}
 
 #endif /* LLQUEUE_H_ */
+
+/************************************************* End code *******************************************************/

@@ -43,10 +43,38 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef QUICKSORT_H_
 #define QUICKSORT_H_
 
+unsigned int divideQuickSortStep(vector<int> userInput,unsigned int startIndex,unsigned int endIndex){
+	if(startIndex > endIndex){
+		return INT_MAX;
+	}
+	int key = userInput[endIndex],tempForSwap;
+	while(startIndex < endIndex){
+		while(userInput[startIndex] >= key){
+			startIndex++;
+		}
+		while(userInput[endIndex] <= key && startIndex < endIndex){ // actually there is no need to check startIndex < endIndex condition
+			endIndex--;
+		}
+		if(startIndex < endIndex){
+			tempForSwap = userInput[startIndex];
+			userInput[startIndex] = userInput[endIndex];
+			userInput[endIndex] = tempForSwap;
+		}
+	}
+	return endIndex;
+}
+
+void quickSort(vector<int> userInput,unsigned int startIndex,unsigned int endIndex){
+	if(startIndex > endIndex){
+		return;
+	}
+	int dividingIndex = divideQuickSortStep(userInput,startIndex,endIndex);
+	quickSort(userInput,startIndex,dividingIndex);
+	quickSort(userInput,dividingIndex+1,endIndex);
+}
 
 #endif /* QUICKSORT_H_ */
+/************************************************* End code *******************************************************/

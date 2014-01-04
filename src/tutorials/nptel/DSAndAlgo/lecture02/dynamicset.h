@@ -46,6 +46,57 @@ using namespace __gnu_cxx;
 #ifndef DYNAMICSET_H_
 #define DYNAMICSET_H_
 
+void addToDynamicSet(llNode **ptr,int userInput){
+	if(*ptr == NULL){
+		(*ptr) = (llNode *)malloc(sizeof(llNode));
+		(*ptr)->value = userInput;
+		(*ptr)->next = NULL;
+	}else{
+		bool elementExists = false;
+		llNode *crawler = *ptr;
+		while(crawler != NULL){
+			if(crawler->value == userInput){
+				elementExists = true;
+			}
+		}
+		if(!elementExists){
+			llNode *newNode = (llNode *)malloc(sizeof(llNode));
+			newNode->value = userInput;
+			newNode->next = (*ptr);
+			(*ptr) = newNode;
+		}
+	}
+}
+
+void deleteFromDynamicSet(llNode **ptr,int userInput){
+	if(*ptr == NULL){
+		printf("Dynamic set is empty");
+		return;
+	}else{
+		llNode *nodeToBeDeleted;
+		if((*ptr)->value == userInput){
+			if((*ptr)->next != NULL){
+				nodeToBeDeleted = (*ptr);
+				free(nodeToBeDeleted);
+				(*ptr) = (*ptr)->next;
+			}else{
+				nodeToBeDeleted = (*ptr);
+				free(nodeToBeDeleted);
+				(*ptr) = NULL;
+			}
+		}else{
+			llNode *crawler = *ptr;
+			while(crawler->next != NULL && crawler->next->value != userInput){
+				crawler = crawler->next;
+			}
+			if(crawler->next != NULL){
+				nodeToBeDeleted = crawler->next;
+				crawler->next = crawler->next->next;
+				free(nodeToBeDeleted);
+			}
+		}
+	}
+}
 
 #endif /* DYNAMICSET_H_ */
 /************************************************* End code *******************************************************/

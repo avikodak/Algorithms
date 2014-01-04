@@ -43,10 +43,27 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BUILDTREEFROMPREINORDER_H_
 #define BUILDTREEFROMPREINORDER_H_
 
+tNode *buildTreeFromPreInorder(vector<int> preOrder,vector<int> inOrder,hash_map<int,int> inOrderValueIndexMap,unsigned int preOrderStartIndex,unsigned int preOrderEndIndex,unsigned int inOrderStartIndex,unsigned int inOrderEndIndex){
+	if(preOrder.size() == 0 || inOrder.size() == 0 || preOrderStartIndex > preOrderEndIndex || inOrderStartIndex > inOrderEndIndex){
+		return NULL;
+	}
+	tNode *newNode;
+	newNode = (tNode *)malloc(sizeof(tNode));
+	newNode->value = preOrder[preOrderStartIndex];
+	unsigned int inOrderIndex = inOrderValueIndexMap.find(newNode->value);
+
+	if(inOrderIndex < inOrderStartIndex || inOrderIndex > inOrderEndIndex){
+		printf("Cannot build the tree");
+		return NULL;
+	}
+	newNode->left = buildTreeFromPreInorder(preOrder,inOrder,inOrderValueIndexMap,preOrderStartIndex+1,preOrderStartIndex+(inOrderIndex - inOrderStartIndex),inOrderStartIndex,inOrderIndex-1);
+	newNode->right = buildTreeFromPreInorder(preOrder,inOrder,inOrderValueIndexMap,preOrderStartIndex + (inOrderIndex - inOrderStartIndex) + 1,preOrderEndIndex,inOrderIndex+1,inOrderEndIndex);
+	return newNode;
+}
 
 #endif /* BUILDTREEFROMPREINORDER_H_ */
+
+/************************************************* End code *******************************************************/

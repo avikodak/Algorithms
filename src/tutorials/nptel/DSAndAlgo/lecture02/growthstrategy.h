@@ -40,13 +40,25 @@ using namespace __gnu_cxx;
 
 /************************************************ User defined constants *******************************************/
 #define null NULL
+#define GROWTH_STRATEGY_SIZE_MULTIPLY 2
 
 /************************************************* Main code  ******************************************************/
-
-/************************************************* End code *******************************************************/
 
 #ifndef GROWTHSTRATEGY_H_
 #define GROWTHSTRATEGY_H_
 
+int *growArrayByGrowthStrategy(int userInput[],unsigned int sizeOfArray,int key){
+	int *biggerArray;
+	biggerArray = (int *)calloc(sizeOfArray + (GROWTH_STRATEGY_SIZE_MULTIPLY * sizeOfArray),sizeof(int));
+	if(biggerArray != NULL){
+		for(unsigned int counter = 0;counter < sizeOfArray;counter++){
+			biggerArray[counter] = userInput[counter];
+		}
+	}
+	biggerArray[sizeOfArray] = key;
+	return biggerArray;
+}
 
 #endif /* GROWTHSTRATEGY_H_ */
+
+/************************************************* End code *******************************************************/

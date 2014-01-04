@@ -42,11 +42,16 @@ using namespace __gnu_cxx;
 #define null NULL
 
 /************************************************* Main code  ******************************************************/
-
-/************************************************* End code *******************************************************/
-
 #ifndef ORDEREDDICTIONARY_H_
 #define ORDEREDDICTIONARY_H_
 
+void insertIntoOrderedDictionary(llNode *ptr,int userInput){
+
+}
+
+void deleteIntoOrderedDictionary(llNode *ptr,int value){
+
+}
 
 #endif /* ORDEREDDICTIONARY_H_ */
+/************************************************* End code *******************************************************/

@@ -114,7 +114,14 @@ int maxElementON(vector<int> userInput,unsigned int currentIndex){
 }
 
 int maxElementDivideAndConquer(vector<int> userInput,unsigned int startIndex,unsigned int endIndex){
-
+	if(startIndex == endIndex){
+		return userInput[startIndex];
+	}
+	if(abs(startIndex - endIndex) == 1){
+		return max(userInput[startIndex],userInput[endIndex]);
+	}
+	unsigned int middleIndex = (startIndex + endIndex)/2;
+	return max(maxElementDivideAndConquer(userInput,startIndex,middleIndex),maxElementDivideAndConquer(userInput,middleIndex+1,endIndex));
 }
 #endif /* MAXELEMENT_H_ */
 

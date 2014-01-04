@@ -43,10 +43,63 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef PREORDER_H_
 #define PREORDER_H_
 
+void preOrderTraversal(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	printf("%d\t",ptr->value);
+	preOrderTraversal(ptr->left);
+	preOrderTraversal(ptr->right);
+}
+
+void preOrderTraversalIterative(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	stack<tNode *> auxSpace;
+	tNode *currentNode;
+	auxSpace.push(ptr);
+	while(!auxSpace.empty()){
+		currentNode = auxSpace.top();
+		printf("%d",currentNode->value);
+		auxSpace.pop();
+		if(currentNode->right != NULL){
+			auxSpace.push(currentNode->right);
+		}
+		if(currentNode->left != NULL){
+			auxSpace.push(currentNode->left);
+		}
+	}
+}
+
+void preOrderTraversalIterativeMorris(tNode *ptr){
+	if(ptr == NULL){
+		return;
+	}
+	tNode *currentNode = ptr,*temp;
+	while(currentNode != NULL){
+		if(currentNode->left != NULL){
+			temp =currentNode->left;
+			while(temp->right != NULL && temp->right != currentNode){
+				temp = temp->right;
+			}
+			if(temp->right == NULL){
+				printf("%d\t",currentNode->value);
+				temp->right = currentNode;
+				currentNode = currentNode->left;
+			}else{
+				temp->right = NULL;
+				currentNode = currentNode->right;
+			}
+		}else{
+			printf("%d\t",currentNode->value);
+			currentNode = currentNode->right;
+		}
+	}
+}
 
 #endif /* PREORDER_H_ */
+/************************************************* End code *******************************************************/

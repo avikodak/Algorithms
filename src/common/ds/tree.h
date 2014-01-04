@@ -74,6 +74,14 @@ struct tPNodeAuxVal{
 	tPNodeAuxVal *parent;
 };
 
+struct tAvlNode{
+	int value;
+	unsigned int height;
+	avlNode *left;
+	avlNode *right;
+	avlNode *parent;
+};
+
 struct tHashmap{
 	hash_map<unsigned int,tNode *> indexNodeMap;
 	hash_map<uint32_t,unsigned int> nodeIndexMap;
