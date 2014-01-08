@@ -38,9 +38,32 @@
 #define METER 100 * CMS
 using namespace std;
 
+bool sortFunc(pair<int,unsigned> it1,pair<int,unsigned int> it2){
+	return it1.second > it2.second?true:false;
+}
+
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-	printf("%d",2 * METER);
-	//tNodeAuxVal *ptr;
-	return 0;
+	map<int,unsigned int> frequencyMap;
+	map<int,unsigned int>::iterator itToFrequencyMap;
+	frequencyMap[1] = 1;
+	frequencyMap[3] = 4;
+	frequencyMap[5] = 2;
+	vector<pair<int,unsigned int> > pairs;
+	pair<int,unsigned int> singlePair;
+	copy(frequencyMap.begin(),frequencyMap.end(),back_inserter(pairs));
+	sort(pairs.begin(),pairs.end(),sortFunc);
+	frequencyMap.clear();
+
+	for(unsigned int counter = 0;counter < pairs.size();counter++){
+		singlePair = pairs[counter];
+		printf("%d %d",singlePair.first,singlePair.second);
+		frequencyMap.insert(pairs[counter]);
+	}
+	printf("\n");
+	//sort(frequencyMap.begin(),frequencyMap.end(),sortFunc);
+
+
+	for(itToFrequencyMap = frequencyMap.begin();itToFrequencyMap != frequencyMap.end();itToFrequencyMap++){
+		printf("%d %d",itToFrequencyMap->first,itToFrequencyMap->second);
+	}
 }
