@@ -1,11 +1,11 @@
 /***************************************************************************************************************** 
- *  File Name   		: SortNearlySortedArrays.h 
- *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\sites\geeksforgeeks\arrays\page03\SortNearlySortedArrays.h
- *  Created on			: Jan 8, 2014 :: 8:42:58 PM
+ *  File Name   		: MaximumCircularSubarray.h 
+ *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\sites\geeksforgeeks\arrays\page03\MaximumCircularSubarray.h
+ *  Created on			: Jan 9, 2014 :: 2:00:31 PM
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
- *****************************************************************************************************************/
+*****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -43,40 +43,10 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-#ifndef SORTNEARLYSORTEDARRAYS_H_
-#define SORTNEARLYSORTEDARRAYS_H_
-
-void nearlySortedAlgorithm(vector<int> userInput){
-	if(userInput.size() == 0){
-		return;
-	}
-	unsigned int outerCrawler,innerCrawler;
-	int key;
-	for(outerCrawler = 1;outerCrawler < userInput.size();outerCrawler++){
-		innerCrawler = outerCrawler-1;
-		key = userInput[outerCrawler];
-		while(userInput[innerCrawler+1] < userInput[innerCrawler] && innerCrawler>=0){
-			swab(userInput[innerCrawler],userInput[innerCrawler+1]);
-		}
-		userInput[innerCrawler] = key;
-	}
-}
-
-
-
-void nearlySortedAlgorithmBST(vector<int> userInput,unsigned int kValue){
-	if(userInput.size() == 0){
-		return;
-	}
-	tNode *bst = NULL;
-	for(unsigned int counter = 0;counter < kValue;counter++){
-		insertNodeBST(&bst,userInput[counter]);
-	}
-	for(unsigned int counter = kValue;counter < userInput.size();counter++){
-
-	}
-}
-
-#endif /* SORTNEARLYSORTEDARRAYS_H_ */
-
 /************************************************* End code *******************************************************/
+
+#ifndef MAXIMUMCIRCULARSUBARRAY_H_
+#define MAXIMUMCIRCULARSUBARRAY_H_
+
+
+#endif /* MAXIMUMCIRCULARSUBARRAY_H_ */

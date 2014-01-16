@@ -410,12 +410,50 @@ void createFrequencyBST(tNodeAuxVal **ptr,tNodeAuxVal *currentNode,vector<int> u
 		}
 	}
 }
+struct tNodeAuxVal{
+	int value;
+	unsigned int auxValue;
+	tNodeAuxVal *left;
+	tNodeAuxVal *right;
+};
+
+tNodeAuxVal *getParentPtrForInsertionFBST(tNodeAuxVal *ptr,int key){
+	if(ptr == NULL){
+		return NULL;
+	}else{
+		if(ptr->value > key){
+			if(ptr->left == NULL){
+				return ptr;
+			}else{
+				return getParentPtrForInsertionFBST(ptr->left,key);
+			}
+		}else{
+			if(ptr->right == NULL){
+				return ptr;
+			}else{
+				return getParentPtrForInsertionFBST(ptr->right,key);
+			}
+		}
+	}
+
+}
 
 void createFrequencyBSTIterative(tNodeAuxVal **ptr,vector<int> userInput){
-	if((*ptr) == NULL){
-
-	}else{
-
+	if(userInput.size() == 0){
+		return;
+	}
+	tNodeAuxVal *nodeForInsertion;
+	for(unsigned int counter = 0;counter < userInput.size();counter++){
+		if(ptr == NULL){
+			(*ptr) = createNewAuxNode(userInput[counter]);
+		}else{
+			nodeForInsertion = getParentPtrForInsertionFBST(*ptr,userInput[counter]);
+			if(nodeForInsertion->value > userInput[counter]){
+				nodeForInsertion->left = createNewAuxNode(userInput[counter]);
+			}else{
+				nodeForInsertion->right = createNewAuxNode(userInput[counter]);
+			}
+		}
 	}
 }
 

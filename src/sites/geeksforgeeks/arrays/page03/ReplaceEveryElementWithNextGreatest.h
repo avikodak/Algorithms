@@ -5,7 +5,7 @@
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
-*****************************************************************************************************************/
+ *****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -46,6 +46,7 @@ using namespace __gnu_cxx;
 #ifndef REPLACEEVERYELEMENTWITHNEXTGREATEST_H_
 #define REPLACEEVERYELEMENTWITHNEXTGREATEST_H_
 
+/************************************** Replace with next greater than current *************************************/
 void replaceEveryElementWithNextGreatestON2(vector<int> userInput){
 	if(userInput.size() == 0 || userInput.size() == 1){
 		return;
@@ -60,6 +61,65 @@ void replaceEveryElementWithNextGreatestON2(vector<int> userInput){
 		}
 		userInput[outerCrawler] = maxVal;
 	}
+}
+
+void replaceEveryElementWithGreatestON(vector<int> userInput){
+	if(userInput.size() == 0 || userInput.size() == 1){
+		return;
+	}
+	stack<int> auxSpace;
+	for(unsigned int counter = userInput.size()-1;counter >= 0;counter++){
+		while(!auxSpace.empty() && auxSpace.top() < userInput[counter]){
+			auxSpace.pop();
+		}
+		if(auxSpace.empty()){
+			userInput[counter] = INT_MAX;
+		}else{
+			userInput[counter] = auxSpace.top();
+		}
+		auxSpace.push(userInput[counter]);
+	}
+}
+
+/****************************************************************************************************************************/
+
+void replaceNextGreatestRightSideON2(vector<int> userInput){
+	if(userInput.size() == 0 || userInput.size() == 1){
+		return;
+	}
+	int maxElement;
+	for(unsigned int outerCounter = 0;outerCounter < userInput.size();outerCounter++){
+		maxElement = INT_MIN;
+		for(unsigned int innerCounter = outerCounter+1;innerCounter < userInput.size();innerCounter++){
+			if(maxElement < userInput[innerCounter]){
+				maxElement = userInput[innerCounter];
+			}
+		}
+		userInput[outerCounter] = maxElement;
+	}
+}
+
+void replaceNextGreatestRightIterative(vector<int> userInput){
+	if(userInput.size() == 0 || userInput.size() == 1){
+		return;
+	}
+	int maxValue = INT_MIN;
+	for(unsigned int counter = userInput.size();counter < userInput.size();counter++){
+		userInput[counter] = maxValue;
+		if(maxValue < userInput[counter]){
+			maxValue = userInput[counter];
+		}
+	}
+}
+
+int replaceNextGreatestRight(vector<int> userInput,unsigned int currentIndex){
+	if(userInput.size() == 0 || userInput.size() == 1 || currentIndex >= userInput.size()){
+		return INT_MIN;
+	}
+	int nextGreatest = replaceNextGreatestRight(userInput,currentIndex+1);
+	int temp = userInput[currentIndex];
+	userInput[currentIndex] = nextGreatest;
+	return nextGreatest > temp?nextGreatest:temp;
 }
 
 #endif /* REPLACEEVERYELEMENTWITHNEXTGREATEST_H_ */

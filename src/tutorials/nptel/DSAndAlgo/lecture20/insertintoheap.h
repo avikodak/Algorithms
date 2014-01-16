@@ -1,11 +1,11 @@
 /***************************************************************************************************************** 
- *  File Name   		: SortNearlySortedArrays.h 
- *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\sites\geeksforgeeks\arrays\page03\SortNearlySortedArrays.h
- *  Created on			: Jan 8, 2014 :: 8:42:58 PM
+ *  File Name   		: heap.h 
+ *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\tutorials\nptel\DSAndAlgo\lecture21\heap.h
+ *  Created on			: Jan 15, 2014 :: 12:39:53 AM
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
- *****************************************************************************************************************/
+*****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -43,40 +43,25 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-#ifndef SORTNEARLYSORTEDARRAYS_H_
-#define SORTNEARLYSORTEDARRAYS_H_
+#ifndef INSERTINTOHEAP_H_
+#define INSERTINTOHEAP_H_
 
-void nearlySortedAlgorithm(vector<int> userInput){
-	if(userInput.size() == 0){
-		return;
+int min(vector<int> heap){
+	if(heap.size() == 0){
+		return INT_MIN;
 	}
-	unsigned int outerCrawler,innerCrawler;
-	int key;
-	for(outerCrawler = 1;outerCrawler < userInput.size();outerCrawler++){
-		innerCrawler = outerCrawler-1;
-		key = userInput[outerCrawler];
-		while(userInput[innerCrawler+1] < userInput[innerCrawler] && innerCrawler>=0){
-			swab(userInput[innerCrawler],userInput[innerCrawler+1]);
-		}
-		userInput[innerCrawler] = key;
-	}
+	return heap[0];
 }
 
-
-
-void nearlySortedAlgorithmBST(vector<int> userInput,unsigned int kValue){
-	if(userInput.size() == 0){
-		return;
+void insertIntoHeap(vector<int> &userInput,int inputValue){
+	unsigned int newValueIndex = userInput.size();
+	userInput.push_back(inputValue);
+	while(newValueIndex/2 >= 0 && userInput[newValueIndex] > inputValue){
+		swap(userInput[newValueIndex],userInput[newValueIndex/2]);
 	}
-	tNode *bst = NULL;
-	for(unsigned int counter = 0;counter < kValue;counter++){
-		insertNodeBST(&bst,userInput[counter]);
-	}
-	for(unsigned int counter = kValue;counter < userInput.size();counter++){
-
-	}
+	userInput[newValueIndex] = inputValue;
 }
 
-#endif /* SORTNEARLYSORTEDARRAYS_H_ */
+#endif /* INSERTINTOHEAP_H_ */
 
 /************************************************* End code *******************************************************/

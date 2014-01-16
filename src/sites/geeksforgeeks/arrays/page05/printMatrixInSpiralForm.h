@@ -78,7 +78,7 @@ void printMatriInSpiralForm(vector<vector<int> > userInput,unsigned int minRow,u
 	if(userInput.size() == 0){
 		return;
 	}
-	if(minRow > maxRow && minColumn > maxColumn){
+	if(minRow > maxRow || minColumn > maxColumn){
 		return;
 	}
 	for(unsigned int columnCounter = minColumn;columnCounter < maxColumn;columnCounter++){

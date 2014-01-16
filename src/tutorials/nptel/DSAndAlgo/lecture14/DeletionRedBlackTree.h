@@ -1,11 +1,11 @@
 /***************************************************************************************************************** 
- *  File Name   		: SortNearlySortedArrays.h 
- *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\sites\geeksforgeeks\arrays\page03\SortNearlySortedArrays.h
- *  Created on			: Jan 8, 2014 :: 8:42:58 PM
+ *  File Name   		: DeletionRedBlackTree.h 
+ *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\tutorials\nptel\DSAndAlgo\lecture14\DeletionRedBlackTree.h
+ *  Created on			: Jan 9, 2014 :: 11:41:22 PM
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
- *****************************************************************************************************************/
+*****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -43,40 +43,10 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-#ifndef SORTNEARLYSORTEDARRAYS_H_
-#define SORTNEARLYSORTEDARRAYS_H_
-
-void nearlySortedAlgorithm(vector<int> userInput){
-	if(userInput.size() == 0){
-		return;
-	}
-	unsigned int outerCrawler,innerCrawler;
-	int key;
-	for(outerCrawler = 1;outerCrawler < userInput.size();outerCrawler++){
-		innerCrawler = outerCrawler-1;
-		key = userInput[outerCrawler];
-		while(userInput[innerCrawler+1] < userInput[innerCrawler] && innerCrawler>=0){
-			swab(userInput[innerCrawler],userInput[innerCrawler+1]);
-		}
-		userInput[innerCrawler] = key;
-	}
-}
-
-
-
-void nearlySortedAlgorithmBST(vector<int> userInput,unsigned int kValue){
-	if(userInput.size() == 0){
-		return;
-	}
-	tNode *bst = NULL;
-	for(unsigned int counter = 0;counter < kValue;counter++){
-		insertNodeBST(&bst,userInput[counter]);
-	}
-	for(unsigned int counter = kValue;counter < userInput.size();counter++){
-
-	}
-}
-
-#endif /* SORTNEARLYSORTEDARRAYS_H_ */
-
 /************************************************* End code *******************************************************/
+
+#ifndef DELETIONREDBLACKTREE_H_
+#define DELETIONREDBLACKTREE_H_
+
+
+#endif /* DELETIONREDBLACKTREE_H_ */
