@@ -1,0 +1,58 @@
+/***************************************************************************************************************** 
+ *  File Name   		: twoEdgeConnectivity.h 
+ *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\tutorials\nptel\DSAndAlgo\lecture28\twoEdgeConnectivity.h
+ *  Created on			: Jan 25, 2014 :: 2:47:50 AM
+ *  Author				: AVINASH
+ *  Testing Status 		: TODO
+ *  URL 				: TODO
+*****************************************************************************************************************/
+
+/************************************************ Namespaces ****************************************************/
+using namespace std;
+using namespace __gnu_cxx;
+
+/************************************************ User Includes *************************************************/
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+#include <algorithm>
+#include <ctime>
+#include <list>
+#include <map>
+#include <set>
+#include <bitset>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string.h>
+#include <hash_map>
+#include <stack>
+#include <queue>
+#include <limits.h>
+#include <programming/ds/tree.h>
+#include <programming/ds/linkedlist.h>
+#include <programming/utils/treeutils.h>
+#include <programming/utils/llutils.h>
+
+/************************************************ User defined constants *******************************************/
+#define null NULL
+
+/************************************************* Main code  ******************************************************/
+
+#ifndef TWOEDGECONNECTIVITY_H_
+#define TWOEDGECONNECTIVITY_H_
+
+bool isGraphTwoEdgeConnected(vector<vector<unsigned> > adjacencyList,unsigned int nodeCounter){
+	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
+		return true;
+	}
+
+}
+#endif /* TWOEDGECONNECTIVITY_H_ */
+
+/************************************************* End code *******************************************************/
