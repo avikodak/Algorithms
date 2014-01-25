@@ -5,7 +5,7 @@
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
-*****************************************************************************************************************/
+ *****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -47,12 +47,36 @@ using namespace __gnu_cxx;
 #ifndef TWOEDGECONNECTIVITY_H_
 #define TWOEDGECONNECTIVITY_H_
 
-bool isGraphTwoEdgeConnected(vector<vector<unsigned> > adjacencyList,unsigned int nodeCounter){
+unsigned int isGraphTwoEdgeConnected(vector<vector<unsigned int> > adjacencyList,unsigned int nodeCounter){
 	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
 		return true;
 	}
-
+	static vector<unsigned int> predecessor(adjacencyList.size(),UINT_MAX);
+	static vector<unsigned int> arrivalTimes(adjacencyList.size(),UINT_MAX);
+	static vector<unsigned int> departureTimes(adjacencyList.size(),UINT_MAX);
+	static unsigned int timeCounter = 0;
+	unsigned int minAncestorArrivalTime = timeCounter,initTime = timeCounter;
+	arrivalTimes[nodeCounter] = timeCounter++;
+	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
+		if(!adjacencyList[nodeCounter][counter] == predecessor[nodeCounter]){
+			if(arrivalTimes[adjacencyList[nodeCounter][counter]] == UINT_MAX){
+				predecessor[adjacencyList[nodeCounter][counter]] = nodeCounter;
+				minAncestorArrivalTime = min(minAncestorArrivalTime,isGraphTwoEdgeConnected(adjacencyList,adjacencyList[nodeCounter][counter]));
+			}else{
+				minAncestorArrivalTime = min(minAncestorArrivalTime,arrivalTimes[adjacencyList[nodeCounter][counter]]);
+			}
+		}
+	}
+	if(nodeCounter == 0){
+		return minAncestorArrivalTime;
+	}
+	if(minAncestorArrivalTime == UINT_MAX || minAncestorArrivalTime == initTime){
+		return UINT_MAX;
+	}
+	departureTimes[nodeCounter] = timeCounter++;
+	return minAncestorArrivalTime;
 }
+
 #endif /* TWOEDGECONNECTIVITY_H_ */
 
 /************************************************* End code *******************************************************/

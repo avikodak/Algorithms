@@ -1,7 +1,7 @@
 /***************************************************************************************************************** 
- *  File Name   		: dfsDirectedEdge.h 
- *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\tutorials\nptel\DSAndAlgo\lecture29\dfsDirectedEdge.h
- *  Created on			: Jan 25, 2014 :: 2:50:57 AM
+ *  File Name   		: topologicalSort.h 
+ *	File Location		: C:\Users\AVINASH\Desktop\CC++\Programming\src\tutorials\nptel\DSAndAlgo\lecture29\topologicalSort.h
+ *  Created on			: Jan 25, 2014 :: 12:14:13 PM
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
@@ -44,34 +44,24 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-#ifndef DFSDIRECTEDEDGE_H_
-#define DFSDIRECTEDEDGE_H_
+#ifndef TOPOLOGICALSORT_H_
+#define TOPOLOGICALSORT_H_
 
-/**
- * 0 - Tree edges
- * 1 - Back edges
- * 2 - Front edges
- * 3 - Cross edges
- */
-
-void edgesInDirectedGraph(vector<vector<unsigned int> > adjacencyList,unsigned int nodeCounter,hash_map<unsigned int,vector<pair<unsigned int,unsigned int> > > &edges){
-	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
+void topologicalSort(const vector<vector<unsigned int> > adjacencyList,unsigned int nodeIndex,vector<unsigned int> &sortOrder){
+	if(adjacencyList.size() == 0 || nodeIndex >= adjacencyList.size()){
 		return;
 	}
-	static vector<unsigned int> arrivalTimes(adjacencyList.size(),UINT_MAX);
-	static vector<unsigned int> departureTimes(adjacencyList.size(),UINT_MAX);
+	static unsigned int arrivalTimes[adjacencyList.size()];
 	static unsigned int timeCounter = 0;
-	arrivalTimes[nodeCounter] = timeCounter++;
-	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
-		if(arrivalTimes[adjacencyList[nodeCounter][counter]] == UINT_MAX){
-
-		}else{
-
+	arrivalTimes[nodeIndex] = timeCounter++;
+	for(unsigned int counter = 0;counter < adjacencyList.size();counter++){
+		if(arrivalTimes[adjacencyList[nodeIndex][counter]] == UINT_MAX){
+			topologicalSort(adjacencyList,adjacencyList[nodeIndex][counter],sortOrder);
 		}
 	}
-	departureTimes[nodeCounter] = timeCounter++;
+	sortOrder.push_back(nodeIndex);
 }
 
-#endif /* DFSDIRECTEDEDGE_H_ */
+#endif /* TOPOLOGICALSORT_H_ */
 
 /************************************************* End code *******************************************************/

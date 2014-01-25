@@ -44,10 +44,38 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef BFSEDGES_H_
 #define BFSEDGES_H_
 
+/**
+ * 0 - Tree edges
+ * 1 - back edges
+ * 2 - level edges
+ */
+hash_map<unsigned int,vector<pair<unsigned int,unsigned int> > > classifyEdgesInBFS(const vector<vector<unsigned int> > adjacencyList){
+	hash_map<unsigned int,vector<pair<unsigned int,unsigned int> > > edges;
+	if(adjacencyList.size() == 0){
+		return edges;
+	}
+	vector<unsigned int> levels(adjacencyList.size(),UINT_MAX);
+	queue<unsigned int> auxSpace;
+	unsigned int currentIndex,currentLevel;
+	auxSpace.push(0);levels[0] = 0;
+	while(!auxSpace.empty()){
+		currentIndex = auxSpace.front();
+		auxSpace.pop();
+		currentLevel = levels[currentIndex];
+		for(unsigned int counter = 0;counter < adjacencyList[currentIndex].size();counter++){
+			if(levels[adjacencyList[currentIndex][counter]] == UINT_MAX){
+
+			}else{
+
+			}
+		}
+	}
+}
+
 
 #endif /* BFSEDGES_H_ */
+
+/************************************************* End code *******************************************************/

@@ -44,10 +44,20 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef STRONGLYCONNECTED_H_
 #define STRONGLYCONNECTED_H_
 
+bool isDirectedGraphStronglyConnectedNaiveON2(vector<vector<unsigned int> > adjacencyList){
 
+}
+
+bool isDirectedGraphStronglyConnectedO2N(vector<vector<unsigned int> > adjacencyList){
+
+}
+
+bool isDirectedGraphStronglyConnectedON(vector<vector<unsigned int> > adjacencyList){
+
+}
 #endif /* STRONGLYCONNECTED_H_ */
+
+/************************************************* End code *******************************************************/

@@ -47,6 +47,27 @@ using namespace __gnu_cxx;
 #ifndef ACYCLICGRAPH_H_
 #define ACYCLICGRAPH_H_
 
+bool isGraphAcyclic(const vector<vector<unsigned int> > adjacencyList){
+	if(adjacencyList.size() == 0){
+		return true;
+	}
+	vector<unsigned int> flags(adjacencyList.size(),UINT_MAX);
+	queue<unsigned int> auxSpace;
+	unsigned int currentIndex;
+	auxSpace.push(0);
+	flags[0] = true;
+	while(!auxSpace.empty()){
+		currentIndex = auxSpace.front();
+		auxSpace.pop();
+		for(unsigned int counter = 0;counter < adjacencyList[currentIndex].size();counter++){
+			if(flags[adjacencyList[currentIndex][counter]]){
+				return false;
+			}
+			auxSpace.push(adjacencyList[currentIndex][counter]);
+		}
+	}
+	return true;
+}
 
 #endif /* ACYCLICGRAPH_H_ */
 

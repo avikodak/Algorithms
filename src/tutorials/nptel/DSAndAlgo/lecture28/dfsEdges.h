@@ -5,7 +5,7 @@
  *  Author				: AVINASH
  *  Testing Status 		: TODO
  *  URL 				: TODO
-*****************************************************************************************************************/
+ *****************************************************************************************************************/
 
 /************************************************ Namespaces ****************************************************/
 using namespace std;
@@ -47,6 +47,32 @@ using namespace __gnu_cxx;
 #ifndef DFSEDGES_H_
 #define DFSEDGES_H_
 
+/**
+ * 0 - Tree edges
+ * 1 - Back edges
+ */
+void dfsEdgesUndirected(const vector<vector<unsigned int> > adjacencyList,unsigned int nodeCounter,hash_map<unsigned int,vector<pair<unsigned int,unsigned int> > > &edges){
+	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
+		return;
+	}
+	static vector<unsigned int> arrivalTimes;
+	static vector<unsigned int> departureTimes;
+	static vector<unsigned int> predecessor;
+	unsigned int timeCounter = 0;
+	arrivalTimes[nodeCounter] = timeCounter++;
+	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
+		if(predecessor[adjacencyList[nodeCounter][counter]] != adjacencyList[nodeCounter][counter]){
+			if(arrivalTimes[adjacencyList[nodeCounter][counter]] == UINT_MAX){
+				predecessor[adjacencyList[nodeCounter][counter]] = nodeCounter;
+				edges[0].push_back(pair<unsigned int,unsigned int>(nodeCounter,counter));
+				dfsEdgesUndirected(adjacencyList,adjacencyList[nodeCounter][counter],edges);
+			}else{
+				edges[1].push_back(pair<unsigned int,unsigned int>(nodeCounter,counter));
+			}
+		}
+	}
+	departureTimes[nodeCounter] = timeCounter++;
+}
 
 #endif /* DFSEDGES_H_ */
 

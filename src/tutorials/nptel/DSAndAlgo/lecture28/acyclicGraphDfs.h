@@ -57,7 +57,7 @@ bool isGraphAcyclic(vector<vector<unsigned int> > adjacencyList,unsigned int nod
 	arrivalTimes[nodeCounter] = timeCounter++;
 	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
 		if(arrivalTimes[adjacencyList[nodeCounter][counter]] ==UINT_MAX){
-			if(!isGraphAcyclic(adjacencyList,counter)){
+			if(!isGraphAcyclic(adjacencyList,adjacencyList[nodeCounter][counter])){
 				return false;
 			}
 		}else{

@@ -44,10 +44,32 @@ using namespace __gnu_cxx;
 
 /************************************************* Main code  ******************************************************/
 
-/************************************************* End code *******************************************************/
-
 #ifndef ACYCLICDIRECTEDGRAPH_H_
 #define ACYCLICDIRECTEDGRAPH_H_
 
+bool isDirectedGraphAcyclic(vector<vector<unsigned int> > adjacencyList,unsigned int nodeCounter){
+	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
+		return true;
+	}
+	static vector<unsigned int> arrivalTimes(adjacencyList.size(),UINT_MAX);
+	static vector<unsigned int> departureTimes(adjacencyList.size(),UINT_MAX);
+	static unsigned int timeCounter;
+	arrivalTimes[nodeCounter] = timeCounter++;
+	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
+		if(arrivalTimes[adjacencyList[nodeCounter][counter]] == UINT_MAX){
+			if(!isDirectedGraphAcyclic(adjacencyList,adjacencyList[nodeCounter][counter])){
+				return false;
+			}
+		}else{
+			if(arrivalTimes[adjacencyList[nodeCounter][counter]] > arrivalTimes[nodeCounter]){
+				return false;
+			}
+		}
+	}
+	departureTimes[nodeCounter] = timeCounter++;
+	return true;
+}
 
 #endif /* ACYCLICDIRECTEDGRAPH_H_ */
+
+/************************************************* End code *******************************************************/

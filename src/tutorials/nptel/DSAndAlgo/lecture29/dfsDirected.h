@@ -47,6 +47,19 @@ using namespace __gnu_cxx;
 #ifndef DFSDIRECTED_H_
 #define DFSDIRECTED_H_
 
+void dfsDirected(vector<vector<unsigned int> > adjacencyList,unsigned int nodeCounter,vector<unsigned int> &arrivalTimes,vector<unsigned int> &departureTimes){
+	if(adjacencyList.size() == 0 || nodeCounter >= adjacencyList.size()){
+		return;
+	}
+	static unsigned int timeCounter = 0;
+	arrivalTimes[nodeCounter] = timeCounter++;
+	for(unsigned int counter = 0;counter < adjacencyList[nodeCounter].size();counter++){
+		if(arrivalTimes[adjacencyList[nodeCounter][counter]] == UINT_MAX){
+			dfsDirected(adjacencyList,adjacencyList[nodeCounter][counter],arrivalTimes,departureTimes);
+		}
+	}
+	departureTimes[nodeCounter]  = timeCounter++;
+}
 
 #endif /* DFSDIRECTED_H_ */
 
